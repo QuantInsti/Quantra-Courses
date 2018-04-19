@@ -1,0 +1,4 @@
+[submodule "introduction-to-machine-learning-for-trading"]
+	path = introduction-to-machine-learning-for-trading
+	url = git@github.com:goquantra/introduction-to-machine-learning-for-trading.git
+	branch = master
