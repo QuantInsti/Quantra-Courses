@@ -2,3 +2,11 @@
 	path = introduction-to-machine-learning-for-trading
 	url = git@github.com:goquantra/introduction-to-machine-learning-for-trading.git
 	branch = master
+[submodule "trading-using-options-sentiment-indicators"]
+	path = trading-using-options-sentiment-indicators
+	url = git@github.com:goquantra/trading-using-options-sentiment-indicators.git
+	branch = master
+[submodule "options-trading-strategies-in-python-basic"]
+	path = options-trading-strategies-in-python-basic
+	url = git@github.com:goquantra/options-trading-strategies-in-python-basic.git
+	branch = master
