@@ -12,8 +12,8 @@
       Website
     </a>
     <span> | </span>
-    <a href="https://quantra.quantinsti.com/course/trading-using-options-sentiment-indicators">
-      Course
+    <a href="https://quantra.quantinsti.com/courses">
+      Courses
     </a>
        <span> | </span>
     <a href="https://quantra.quantinsti.com/community">
