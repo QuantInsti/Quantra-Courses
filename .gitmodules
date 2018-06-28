@@ -10,3 +10,11 @@
 	path = options-trading-strategies-in-python-basic
 	url = git@github.com:goquantra/options-trading-strategies-in-python-basic.git
 	branch = master
+[submodule "automated-trading-with-ibridgepy-using-interactive-brokers-platform"]
+	path = automated-trading-with-ibridgepy-using-interactive-brokers-platform
+	url = git@github.com:goquantra/automated-trading-with-ibridgepy-using-interactive-brokers-platform.git
+	branch = master
+[submodule "python-for-trading-basic"]
+	path = python-for-trading-basic
+	url = git@github.com:goquantra/python-for-trading-basic.git
+	branch = master
