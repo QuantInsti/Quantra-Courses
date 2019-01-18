@@ -3,7 +3,7 @@ import quandl
 import traceback
 import iexfinance as iex
 import nsepy
-
+import pandas as pd
 from quandl.errors.quandl_error import AuthenticationError
 
 # API key to access quandl data
@@ -16,7 +16,7 @@ def get_data(ticker, start_date='2016-01-01', end_date='2017-01-01'):
     try:
         df = quandl.get('WIKI/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
         df['Source'] = 'Quandl Wiki'
-        return d[['Open','High','Low','Close','Volume','Source']]
+        return df[['Open','High','Low','Close','Volume','Source']]
     except AuthenticationError as a:        
         print(a)        
         print("Please replace the line no. 13 in quantrautil.py file with your Quandl API Key")
