@@ -1,18 +1,25 @@
+import pandas as pd
+import traceback
+
 import fix_yahoo_finance as yf
 import quandl
-import traceback
 import iexfinance as iex
 import nsepy
-import pandas as pd
+
 from quandl.errors.quandl_error import AuthenticationError
 
-# API key to access quandl data
 def get_quantinsti_api_key():
-    #To get your API key, sign up for a free Quandl account
-    #Then, you can find your API key on Quandl account settings page
+    '''
+        This function returns the Quandl's API key which is used to access quandl data
+        To get your API key, sign up for a free Quandl account
+        Then, you can find your API key on Quandl account settings page
+    '''
     return '<<Copy Paste your Quandl API Key here>>'
 
 def get_data(ticker, start_date='2016-01-01', end_date='2017-01-01'):
+    '''
+        This function fetches the data from different web source such as Quandl, Yahoo finance and NSEPy
+    '''
     try:
         df = quandl.get('WIKI/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
         df['Source'] = 'Quandl Wiki'
