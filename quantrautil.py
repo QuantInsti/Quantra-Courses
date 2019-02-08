@@ -16,27 +16,29 @@ def get_quantinsti_api_key():
     """
     return '<<Copy Paste your Quandl API Key here>>'
 
+
 def get_data(ticker, start_date='2016-01-01', end_date='2017-01-01'):
     """
         This function fetches the data from different web source such as Quandl, Yahoo finance and NSEPy
     """
     try:
-        df = quandl.get('WIKI/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
-        df['Source'] = 'Quandl Wiki'
-        return df[['Open','High','Low','Close','Volume','Source']]
-    except AuthenticationError as a:        
-        print(a)        
-        print("Please replace the line no. 13 in quantrautil.py file with your Quandl API Key")
+        df = yf.download(ticker, start_date, end_date)
+        df['Source'] = 'Yahoo'        
+        return df[['Open','High','Low','Close','Adj Close','Volume','Source']]
     except:
         try:
-            df = quandl.get('NSE/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
-            df['Source'] = 'Quandl NSE'
-            return df[['Open','High','Low','Close','Volume','Source']]
+            df = quandl.get('WIKI/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
+            df['Source'] = 'Quandl Wiki'            
+            df = df.rename(columns={"Adj. Close": "Adj Close"})                        
+            return df[['Open','High','Low','Close','Adj Close','Volume','Source']]
+        except AuthenticationError as a:        
+            print(a)        
+            print("Please replace the line no. 17 in quantrautil.py file with your Quandl API Key")
         except:
             try:
                 start_date = pd.to_datetime(start_date)
                 end_date = pd.to_datetime(end_date)
-                df = iex.get_historical_data(ticker, start=start_date, end=end_date, output_format='pandas')
+                df = iex.stocks.get_historical_data(ticker, start=start_date, end=end_date, output_format='pandas')
                 df.index.name = 'Date'
                 df = df.rename(columns={'open': 'Open',
                                         'high': 'High',
@@ -44,17 +46,18 @@ def get_data(ticker, start_date='2016-01-01', end_date='2017-01-01'):
                                         'close': 'Close',
                                         'volume': 'Volume',
                                        })
-                df['Source'] = 'IEX'
+                df['Source'] = 'IEX'                
                 return df[['Open','High','Low','Close','Volume','Source']]
             except:
-                try:                    
-                    df = nsepy.get_history(symbol=ticker, start=start_date, end=end_date)                    
-                    df['Source'] = 'nsepy'
+                try:
+                    df = quandl.get('NSE/'+ticker, start_date=start_date, end_date=end_date, api_key=get_quantinsti_api_key())
+                    df['Source'] = 'Quandl NSE'                    
                     return df[['Open','High','Low','Close','Volume','Source']]
                 except:
-                    try:
-                        df = yf.download(ticker, start_date, end_date)
-                        df['Source'] = 'Yahoo'
+                    try:                    
+                        df = nsepy.get_history(symbol=ticker, start=start_date, end=end_date)                    
+                        df['Source'] = 'nsepy'
                         return df[['Open','High','Low','Close','Volume','Source']]
-                    except:                                     
+                    except:                                                           
                         print(traceback.print_exc())
+                        
