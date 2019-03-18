@@ -11,10 +11,24 @@ from quandl.errors.quandl_error import AuthenticationError
 def get_quantinsti_api_key():
     """
         This function returns the Quandl's API key which is used to access quandl data
-        To get your API key, sign up for a free Quandl account
+        To get your API key, sign up for a free Quandl account (https://docs.quandl.com/docs#section-authentication)
         Then, you can find your API key on Quandl account settings page
     """
-    return '<<Copy Paste your Quandl API Key here>>'
+    return '<<Copy paste your Quandl API Key here>>'
+
+def get_alpha_vantage_api_key():
+    """
+        This function returns the Alpha vantage API key which is used to access Alpha vantage data
+        To get your API key, sign up for a free Alpha vantage account (https://www.alphavantage.co/support/#api-key)        
+    """    
+    return '<<Copy paste your Alpha Vantage API Key here>>'   
+
+def get_binance_api_key():
+    """
+        This function returns the Binance API key which is used to access crypto data.
+        To get your API key, sign up for a free binance account.        
+    """    
+    return '<<Copy paste your Binance API Key here>>'   
 
 
 def get_data(ticker, start_date='2016-01-01', end_date='2017-01-01'):
