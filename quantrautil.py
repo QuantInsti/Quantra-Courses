@@ -3,7 +3,7 @@ import traceback
 
 import fix_yahoo_finance as yf
 import quandl
-import iexfinance as iex
+import iexfinance.stocks as iex
 import nsepy
 
 from quandl.errors.quandl_error import AuthenticationError
